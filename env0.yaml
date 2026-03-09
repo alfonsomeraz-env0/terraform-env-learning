@@ -1,0 +1,12 @@
+deploy:
+  steps:
+    plan:
+      before:
+        - name: Security Scan
+          type: shell
+          command: ./scripts/security-scan.sh
+    apply:
+      after:
+        - name: Notify Slack
+          type: shell
+          command: ./scripts/notify-slack.sh
